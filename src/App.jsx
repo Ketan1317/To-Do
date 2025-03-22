@@ -46,8 +46,8 @@ function App() {
           <input
             type="text"
             onChange={(event) => setNewTask(event.target.value)}
-            className="border-[1px] w-40 md:w-80 hover:border-2 mt-6 pl-4 ml-7 border-zinc-300"
-            placeholder="Enter............."
+            className="border-[1px] w-52 md:w-80 hover:border-2 mt-6 pl-4 ml-7 border-zinc-300"
+            placeholder="typing......"
             value={newTask}
           />
           
@@ -55,7 +55,7 @@ function App() {
           <input
             type="submit"
             value="Add Task"
-            className="bg-green-400 hover:bg-green-700 cursor-pointer text-xs font-light mt-4 md:text-xl rounded-2xl md:font-semibold px-2 py-1 md:px-4 md:py-2"
+            className="bg-green-400 hover:bg-green-700 cursor-pointer text-xs font-md mt-4 md:text-xl rounded-2xl md:font-semibold px-2 py-1 md:px-4 md:py-2"
           />
         </label>
       </form>
