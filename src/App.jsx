@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className="pt-5 select-none text-center">
+    <div className="pt-5  overflow-x-hidden md:overflow-auto select-none text-center">
       <h1 className="text-6xl font-extrabold text-zinc-200">To-Do List</h1>
       <form
         onSubmit={(event) => {
@@ -46,7 +46,7 @@ function App() {
           <input
             type="text"
             onChange={(event) => setNewTask(event.target.value)}
-            className="border-[1px] hover:border-2 mt-6 pl-4 ml-7 border-zinc-300"
+            className="border-[1px] w-40 md:w-80 hover:border-2 mt-6 pl-4 ml-7 border-zinc-300"
             placeholder="Enter............."
             value={newTask}
           />
@@ -55,7 +55,7 @@ function App() {
           <input
             type="submit"
             value="Add Task"
-            className="bg-green-400 hover:bg-green-700 cursor-pointer mt-4 text-md rounded-2xl font-semibold px-4 py-2"
+            className="bg-green-400 hover:bg-green-700 cursor-pointer text-xs font-light mt-4 md:text-xl rounded-2xl md:font-semibold px-2 py-1 md:px-4 md:py-2"
           />
         </label>
       </form>
@@ -70,7 +70,7 @@ function App() {
             {tasks.map((item, index) => (
               <div key={index} className="flex items-center justify-between">
                 <div className="flex items-center justify-center gap-7">
-                  <h2 className="text-3xl text-zinc-300 font-bold mt-2">{index + 1}.</h2>
+                  <h2 className="text-xl md:text-3xl text-zinc-300 font-bold mt-2">{index + 1}.</h2>
                   <li className="ml-4 text-3xl mt-5 font-bold">{item}</li>
                 </div>
                 <button
@@ -83,7 +83,7 @@ function App() {
             ))}
           </ul>
         ) : (
-          <h1 className="text-5xl font-extrabold mt-11">
+          <h1 className=" text-2xl md:text-5xl font-extrabold mt-11">
             No Tasks To Do.......Enjoy 🍻
           </h1>
         )}
