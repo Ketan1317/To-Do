@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,10 +15,9 @@ function App() {
   }, []);
 
   const addTask = () => {
-    if (newTask.length === 0) {
-      return;
-    }
-    const updatedTasks = [...tasks, newTask];
+    if (newTask.trim().length === 0) return;
+
+    const updatedTasks = [...tasks, newTask.trim()];
     setTasks(updatedTasks);
     localStorage.setItem("task", JSON.stringify(updatedTasks));
     setNewTask("");
@@ -33,59 +32,64 @@ function App() {
   };
 
   return (
-    <div className="pt-5  overflow-x-hidden md:overflow-auto select-none text-center">
-      <h1 className="text-6xl font-extrabold text-zinc-200">To-Do List</h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col items-center px-4 py-8">
+      <h1 className="text-5xl md:text-6xl font-extrabold text-cyan-400 mb-8">
+        To-Do List
+      </h1>
+
       <form
-        onSubmit={(event) => {
-          event.preventDefault();
+        onSubmit={(e) => {
+          e.preventDefault();
           addTask();
         }}
+        className="flex flex-col md:flex-row items-center gap-4 mb-8 w-full max-w-2xl"
       >
-        <label className="font-semibold text-2xl">
-          Enter New Task:
-          <input
-            type="text"
-            onChange={(event) => setNewTask(event.target.value)}
-            className="border-[1px] w-52 md:w-80 hover:border-2 mt-6 pl-4 ml-7 border-zinc-300"
-            placeholder="typing......"
-            value={newTask}
-          />
-          
-          <br />
-          <input
-            type="submit"
-            value="Add Task"
-            className="bg-green-400 hover:bg-green-700 cursor-pointer text-xs font-md mt-4 md:text-xl rounded-2xl md:font-semibold px-2 py-1 md:px-4 md:py-2"
-          />
-        </label>
+        <input
+          type="text"
+          placeholder="Type your task..."
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          className="w-full md:flex-1 px-4 py-2 rounded-lg border border-cyan-400 bg-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"
+        />
+        <input
+          type="submit"
+          value="Add Task"
+          className="bg-green-500 hover:bg-green-600 cursor-pointer px-6 py-2 rounded-lg text-white font-semibold shadow-md transition"
+        />
       </form>
-      <p className="text-2xl font-bold text-cyan-700 text-center mt-4 mb-3">
-        Number of Tasks to-do: {count}
+
+      <p className="text-xl md:text-2xl font-semibold text-cyan-300 mb-6">
+        Number of Tasks: {count}
       </p>
-      <div className="p-6 border-2 pb-7 h-fit border-gray-500 ml-10 mr-10 mt-7">
-        <h1 className="font-bold text-cyan-500 text-3xl">Tasks To Do 👇</h1>
+
+      <div className="bg-slate-800/70 border border-slate-600 rounded-2xl p-6 w-full max-w-3xl shadow-xl backdrop-blur">
+        <h2 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-4 text-center">
+          Tasks To Do 👇
+        </h2>
 
         {tasks.length > 0 ? (
-          <ul>
+          <ul className="space-y-4">
             {tasks.map((item, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <div className="flex items-center justify-center gap-7">
-                  <h2 className="text-xl md:text-3xl text-zinc-300 font-bold mt-2">{index + 1}.</h2>
-                  <li className="ml-4 text-3xl mt-5 font-bold">{item}</li>
-                </div>
+              <li
+                key={index}
+                className="flex items-center justify-between bg-slate-700 rounded-lg px-4 py-3"
+              >
+                <span className="flex items-center gap-4 text-lg md:text-2xl font-semibold">
+                  <span className="text-cyan-400">{index + 1}.</span> {item}
+                </span>
                 <button
                   onClick={() => deleteTask(index)}
-                  className="bg-red-500 mr-4 px-4 py-2 cursor-pointer hover:bg-red-800 font-semibold text-xs rounded-md"
+                  className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md text-white font-semibold text-sm transition"
                 >
                   Delete
                 </button>
-              </div>
+              </li>
             ))}
           </ul>
         ) : (
-          <h1 className=" text-2xl md:text-5xl font-extrabold mt-11">
-            No Tasks To Do.......Enjoy 🍻
-          </h1>
+          <h3 className="text-center text-xl md:text-3xl font-bold text-gray-300 mt-8">
+            No Tasks To Do... Enjoy 🍻
+          </h3>
         )}
       </div>
     </div>
